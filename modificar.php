@@ -1,35 +1,26 @@
-<?php include_once 'layout/header.php'; ?>
+<?php 
+include_once 'layout/header.php';
+$id_emple=$_GET['editar'];
+$query1 = mysqli_query($db, "SELECT * FROM empleado INNER JOIN areas ON empleado.area_id = areas.idA WHERE id=$id_emple");
+$empleado1 = mysqli_fetch_array($query1);
+?>
 <body>
-
   <div class="container">
     <br>
     <br>
-    <h2>Crear Empleado</h2>
+    <h2>Editar Datos de <?= $empleado1['nombre']?></h2>
     <br>
     <br>
-    <?php if(isset($_SESSION['completado'])): ?>
-			<div class="alerta alerta-exito">
-				<?=$_SESSION['completado']?>
-			</div>
-		<?php elseif(isset($_SESSION['errores']['general'])): ?>
-			<div class="alerta alerta-error">
-				<?=$_SESSION['errores']['general']?>
-			</div>
-		<?php endif; ?>
-    <br>
-    <br>
-    <form action="datos.php" method="post">
+    <form action="datos.php?editar=<?= $empleado1['id']?>" method="post">
       <!--Nombre-->
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre Completo *</label>
-        <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="helpId" placeholder="Nombre completo del empleado" required>
-        <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'], 'nombre'): '';?>
+        <input type="text" class="form-control" name="nombre" id="nombre" value="<?= $empleado1['nombre']?>" aria-describedby="helpId" placeholder="Nombre completo del empleado" required>
       </div>
       <!--Correo-->
       <div class="mb-3">
         <label for="correo" class="form-label">Correo Electronico *</label>
-        <input type="email" class="form-control" name="correo" id="correo" aria-describedby="helpId" placeholder="Correo electronico" required>
-        <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'], 'correo'): '';?>
+        <input type="email" class="form-control" name="correo" id="correo" aria-describedby="helpId" value="<?= $empleado1['email']?>" placeholder="Correo electronico" required>
       </div>
       <!--Sexo-->
       <div class="mb-3">
@@ -44,7 +35,7 @@
       <!--Area-->
       <div class="mb-3">
         <label for="area" class="form-label">Area *</label>
-        <select class="form-control" name="area" id="area" required>
+        <select class="form-control" name="area" id="area" value="<?= $empleado1['nombreA']?>" required>
           <?php
           while ($datos = mysqli_fetch_array($query)) :
           ?>
@@ -57,7 +48,7 @@
       <!--Descripcion-->
       <div class="mb-3">
         <label for="descripcion" class="form-label">Descripcion *</label>
-        <textarea class="form-control" name="descripcion" id="descripcion" rows="3" required></textarea>
+        <textarea class="form-control" name="descripcion" id="descripcion" rows="3" required><?= $empleado1['descripcion'] ?></textarea>
       </div>
       <!--Boletin-->
       <div class="form-check">
@@ -86,7 +77,7 @@
     </form>
     <br>
     <br>
-    <?php borrarErrores(); ?>
+    
   </div>
 </body>
 

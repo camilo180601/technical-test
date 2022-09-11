@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $server = "localhost";
 $database = "prueba_tecnica_dev";
 $username = "root";
