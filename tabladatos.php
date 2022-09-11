@@ -3,6 +3,9 @@
     <br>
     <br>
 <div class="container">
+      <a class="btn btn-primary" href="index.php" role="button">Crear Empleado</a>
+      <br>
+      <br>
       <div class="table-responsive">
         <table class="table table-primary">
           <thead>

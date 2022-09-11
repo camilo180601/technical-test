@@ -3,8 +3,9 @@
 
   <div class="container">
     <br>
-    <br>
     <h2>Crear Empleado</h2>
+    <br>
+    <a class="btn btn-primary" href="tabladatos.php" role="button">Lista Empleados</a>
     <br>
     <br>
     <?php if(isset($_SESSION['completado'])): ?>
