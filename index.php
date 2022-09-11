@@ -9,11 +9,11 @@
     <br>
     <br>
     <?php if(isset($_SESSION['completado'])): ?>
-			<div class="alerta alerta-exito">
+			<div class="alert alert-success">
 				<?=$_SESSION['completado']?>
 			</div>
 		<?php elseif(isset($_SESSION['errores']['general'])): ?>
-			<div class="alerta alerta-error">
+			<div class="alert alert-danger">
 				<?=$_SESSION['errores']['general']?>
 			</div>
 		<?php endif; ?>
